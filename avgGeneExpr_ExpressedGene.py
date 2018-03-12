@@ -69,6 +69,23 @@ polyAMean = polyAMeanDf.mean(axis=0)
 # 0.7170628642305512
 
 
+polyAVarianceDf = pd.read_pickle('polyAVarDf.pkl')
+polyAMeanDf = pd.read_pickle('polyAMeanDf.pkl')
+polyAPctlDf = pd.read_pickle('polyAPtclDf.pkl')
+#plot data
+plt.boxplot((polyAPctlDf, polyAVarianceDf, polyAMeanDf))
+#labels
+plt.xlabel("this is X")
+plt.ylabel("this is Y")
+#title
+plt.title("PolyA p95, Variance, Mean")
+#show plot
+plt.show()
+
+riboDVarianceDf = pd.read_pickle('riboDVarDf.pkl')
+riboDMeanDf = pd.read_pickle('riboDMeanDf.pkl')
+riboDPctlDf = pd.read_pickle('riboDPtclDf.pkl')
+
 # Distance calculation of mean
 threeValsRiboD = np.array([riboDp95[0],riboDVar[0],riboDMean[0]])
 # figure out how to access mean value in dataframes of one value

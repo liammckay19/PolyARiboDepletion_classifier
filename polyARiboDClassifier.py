@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 import csv
 import numpy as np
 import pandas as pd
-
+import sys
 
 def main():
-	inputFileName = sys.stdin
-	newSample = pd.read_csv(inputFileName, sep="\t")
-	data = pd.read_csv(fname, sep="\t")
 
+	inputFileName = sys.stdin
+	newSampdf = pd.read_csv(inputFileName, sep="\t")
+	print(newSampdf)	
 
 # # >>> polyAp95
 # 5.340720200699123
@@ -50,15 +50,22 @@ def main():
 	newSampMeanDf = newSampdf.mean(axis=0)
 	newSampPctlDf = newSampdf.quantile(0.95)
 
-	for col in newSampPctlDf.columns :
+	newSampdf = newSampdf.drop("Gene", axis=1)
+
+	for col in newSampdf.columns :
 		threeValsNewSamp = np.array([newSampPctlDf[col],newSampVarianceDf[col],newSampMeanDf[col]])
 		differenceToRiboD = np.subtract(threeValsNewSamp, threeValsRiboD)
-		differenceToRiboD = np.absolute(differenceToRiboD)
+		differenceToRiboD = np.absolute(differenceToRiboD).sum()
 		differenceToPolyA = np.subtract(threeValsNewSamp, threeValsPolyA)
-		differenceToPolyA = np.absolute(differenceToPolyA)
+		differenceToPolyA = np.absolute(differenceToPolyA).sum()
+		print(threeValsNewSamp)
+
+		print("polya", differenceToPolyA)
+		print("ribod", differenceToRiboD)
 
 		if(differenceToPolyA > differenceToRiboD):
 			print("{0}\tRiboD".format(col))
 		elif(differenceToPolyA < differenceToRiboD):
 			print("{0}\tPolyA".format(col))
 
+main()
