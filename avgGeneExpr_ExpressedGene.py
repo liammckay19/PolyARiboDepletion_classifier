@@ -30,12 +30,10 @@ polyAVarianceDf.to_pickle('polyAVarDf.pkl')
 polyAMeanDf.to_pickle('polyAMeanDf.pkl')
 polyAPctlDf.to_pickle('polyAPtclDf.pkl')
 
-riboD = [c for c in data.columns if c[:4] == 'TH01']
-dfa=data[riboD]
-riboD = [c for c in dfa.columns if c[:5] == 'THR21']
-dfb=dfa[riboD]
-riboD = [c for c in dfb.columns if c[:9] == 'TARGET-51']
-riboDdf=dfb[riboD]
+suspectedRiboD = ("TH01_0051_S01","TH01_0053_S01","TH01_0054_S01","TH01_0055_S01","TH01_0061_S01","TH01_0062_S01","TH01_0063_S01","TH01_0064_S01","TH01_0069_S01")
+
+riboD = [c for c in data.columns if (c[:5] == 'THR21' or c[:9] == 'TARGET-51' or c[:4] == 'TH01') and c[:13] not in suspectedRiboD]
+riboDdf=data[riboD]
 
 riboDVarianceDf = riboDdf.var(axis=0)
 riboDMeanDf = riboDdf.mean(axis=0)
@@ -54,6 +52,22 @@ riboDMean = riboDMeanDf.mean(axis=0)
 polyAp95 = polyAPctlDf.mean(axis=0)
 polyAVar = polyAVarianceDf.mean(axis=0)
 polyAMean = polyAMeanDf.mean(axis=0)
+
+# # >>> polyAp95
+# 5.340720200699123
+# >>> polyAVar
+# 3.649240487654772
+# >>> polyAMean
+# 1.0491995456139986
+
+
+# >>> riboDp95
+# 3.6812559832605625
+# >>> riboDVar
+# 1.881014066540907
+# >>> riboDMean
+# 0.7170628642305512
+
 
 # Distance calculation of mean
 threeValsRiboD = np.array([riboDp95[0],riboDVar[0],riboDMean[0]])
