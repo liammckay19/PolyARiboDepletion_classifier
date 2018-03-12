@@ -9,14 +9,12 @@ import pandas as pd
 fname = 'treehouse_public_samples_unique_hugo_log2_tpm_plus_1.2017-09-11.tsv'
 print(fname)
 
-
-data = pd.read_csv(fname, sep="\t")
-
-
 # TARGET-51
 # THR21
 # TH01
 # these are ribominus
+
+# reading data and initial calculations: 
 polyA = [c for c in data.columns if c[:4] != 'TH01']
 df1=data[polyA]
 polyA = [c for c in df1.columns if c[:5] != 'THR21']
@@ -48,14 +46,41 @@ riboDPctlDf.to_pickle('riboDPtclDf.pkl')
 
 
 
+# distance calculations:
 riboDp95 = riboDPctlDf.mean(axis=0)
 riboDVar = riboDVarianceDf.mean(axis=0)
 riboDMean = riboDMeanDf.mean(axis=0)
 
+polyAp95 = polyAPctlDf.mean(axis=0)
+polyAVar = polyAVarianceDf.mean(axis=0)
+polyAMean = polyAMeanDf.mean(axis=0)
+
 # Distance calculation of mean
-threeValsRiboD = np.array(riboDp95[[0]],riboDVar,riboDMean)
+threeValsRiboD = np.array([riboDp95[0],riboDVar[0],riboDMean[0]])
+# figure out how to access mean value in dataframes of one value
+
+threeValsPolyA = np.array([polyAp95[0],polyAVar[0],polyAMean[0]])
 
 
+# new sample
+newSampVarianceDf = newSampdf.var(axis=0)
+newSampMeanDf = newSampdf.mean(axis=0)
+newSampPctlDf = newSampdf.quantile(0.95)
+newSampVarianceDf.to_pickle('newSampVarDf.pkl')
+newSampMeanDf.to_pickle('newSampMeanDf.pkl')
+newSampPctlDf.to_pickle('newSampPtclDf.pkl')
+
+for col in newSampPctlDf.columns :
+	threeValsNewSamp = np.array([newSampPctlDf[col],newSampVarianceDf[col],newSampMeanDf[col]])
+	differenceToRiboD = np.subtract(threeValsNewSamp, threeValsRiboD)
+	differenceToRiboD = np.absolute(differenceToRiboD)
+	differenceToPolyA = np.subtract(threeValsNewSamp, threeValsPolyA)
+	differenceToPolyA = np.absolute(differenceToPolyA)
+
+	if(differenceToPolyA > differenceToRiboD):
+		print("{0}\tRiboD".format(col))
+	elif(differenceToPolyA < differenceToRiboD):
+		print("{0}\tPolyA".format(col))
 
 
 # # x,y = np.loadtxt(fname, delimiter='\t', unpack=True)
