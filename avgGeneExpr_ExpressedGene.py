@@ -94,24 +94,24 @@ threeValsPolyA = np.array([polyAp95[0],polyAVar[0],polyAMean[0]])
 
 
 # new sample
-newSampVarianceDf = newSampdf.var(axis=0)
-newSampMeanDf = newSampdf.mean(axis=0)
-newSampPctlDf = newSampdf.quantile(0.95)
-newSampVarianceDf.to_pickle('newSampVarDf.pkl')
-newSampMeanDf.to_pickle('newSampMeanDf.pkl')
-newSampPctlDf.to_pickle('newSampPtclDf.pkl')
+# newSampVarianceDf = newSampdf.var(axis=0)
+# newSampMeanDf = newSampdf.mean(axis=0)
+# newSampPctlDf = newSampdf.quantile(0.95)
+# newSampVarianceDf.to_pickle('newSampVarDf.pkl')
+# newSampMeanDf.to_pickle('newSampMeanDf.pkl')
+# newSampPctlDf.to_pickle('newSampPtclDf.pkl')
 
-for col in newSampPctlDf.columns :
-	threeValsNewSamp = np.array([newSampPctlDf[col],newSampVarianceDf[col],newSampMeanDf[col]])
-	differenceToRiboD = np.subtract(threeValsNewSamp, threeValsRiboD)
-	differenceToRiboD = np.absolute(differenceToRiboD)
-	differenceToPolyA = np.subtract(threeValsNewSamp, threeValsPolyA)
-	differenceToPolyA = np.absolute(differenceToPolyA)
+# for col in newSampPctlDf.columns :
+# 	threeValsNewSamp = np.array([newSampPctlDf[col],newSampVarianceDf[col],newSampMeanDf[col]])
+# 	differenceToRiboD = np.subtract(threeValsNewSamp, threeValsRiboD)
+# 	differenceToRiboD = np.absolute(differenceToRiboD)
+# 	differenceToPolyA = np.subtract(threeValsNewSamp, threeValsPolyA)
+# 	differenceToPolyA = np.absolute(differenceToPolyA)
 
-	if(differenceToPolyA > differenceToRiboD):
-		print("{0}\tRiboD".format(col))
-	elif(differenceToPolyA < differenceToRiboD):
-		print("{0}\tPolyA".format(col))
+# 	if(differenceToPolyA > differenceToRiboD):
+# 		print("{0}\tRiboD".format(col))
+# 	elif(differenceToPolyA < differenceToRiboD):
+# 		print("{0}\tPolyA".format(col))
 
 
 # # x,y = np.loadtxt(fname, delimiter='\t', unpack=True)
