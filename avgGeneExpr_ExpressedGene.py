@@ -8,6 +8,7 @@ import pandas as pd
 
 fname = 'treehouse_public_samples_unique_hugo_log2_tpm_plus_1.2017-09-11.tsv'
 print(fname)
+ckccPubSamples = pd.read_csv(fname, sep="\t")
 
 # TARGET-51
 # THR21
@@ -15,13 +16,15 @@ print(fname)
 # these are ribominus
 
 # reading data and initial calculations: 
-polyA = [c for c in data.columns if c[:4] != 'TH01']
-df1=data[polyA]
+
+polyA = [c for c in ckccPubSamples.columns if c[:4] != 'TH01']
+df1=ckccPubSamples[polyA]
 polyA = [c for c in df1.columns if c[:5] != 'THR21']
 df2=df1[polyA]
 polyA = [c for c in df2.columns if c[:9] != 'TARGET-51']
 polyAdf=df2[polyA]
 
+polyAdf['mean'] = polyAdf.mean(axis=1)
 
 polyAVarianceDf = polyAdf.var(axis=0)
 polyAMeanDf = polyAdf.mean(axis=0)
