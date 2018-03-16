@@ -1,4 +1,4 @@
-# - plot avg gene expression vs. expressed genes scatter plot
+# Code to wrangl
 # avgGeneExpr_ExpressedGene.py 
 
 import matplotlib.pyplot as plt
@@ -105,5 +105,3 @@ threeValsRiboD = np.array([riboDp95[0],riboDVar[0],riboDMean[0]])
 threeValsPolyA = np.array([polyAp95[0],polyAVar[0],polyAMean[0]])
 
 
-if __name__ == "__main__":
-	main()  # delete the list when you want to run normally
