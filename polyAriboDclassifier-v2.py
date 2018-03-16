@@ -2,8 +2,6 @@
 # By Liam McKay (ltmckay) and Paola Angulo (pangulo)
 # polyAriboDclassifier-v2.py
 
-
-
 ####################################################################################
 # MAIN PROGRAM
 # 
