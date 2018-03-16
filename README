@@ -1,0 +1,13 @@
+# MAIN PROGRAM
+# 
+# Finds the method of preparation for the transcriptome from a sequence partner 
+# in the Treehouse Initiative 
+# Usage: $ python polyAriboDclassifier-v2.py [-nG [--noGene]] inputFile.tsv outputFile
+(if using mac do not use <input >output, use input output)
+
+
+The algorithmCheck1.txt is the output from our current classifier (v2)
+
+Comparing this to algorithmCheck1-Correct.txt, we can see that the error is 90.1% (14 wrong out of 146 samples)
+
+These samples were taken from ckcc cohort from Liam's undergraduate research
