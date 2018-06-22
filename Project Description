@@ -1,0 +1,20 @@
+# Liam's ribosomal depletion identifier
+
+Liam will investigate a method of identifying ribo-depletion samples based on gene expression values using RNA-Seq data.
+
+This is an important project for Treehouse.  Our overall goal is that every kid with cancer have a treatment option, which is not currently the case.
+We take advantage of the relatively recent development of targeted drugs.
+Unlike chemotherapies, which indiscriminately target all dividing cells in the body, targeted therapies affect a pathway or class of molecules.
+In adults, these activated pathways are often identified with a mutation, but mutation in analysis in kids is usually less fruitful because fewer clinically actionable mutations are known, in part because fewer mutations exist.
+Consequently, we seek to identify pathways with transcriptional evidence of activation, and we use comparative RNA-Seq analysis to accomplish it.
+
+To identify highly expressed genes, our RNA-Seq analysis compares the focus sample with other tumor samples.
+Current methods require tumor samples to be prepared with polyA selection and not ribosomal depletion.
+The documentation of each subset of the 11,000+ samples available for comparison has been carefully examined to ensure the samples are comparable.
+Unfortunately, we have found that some documentation is inaccurate, which can lead to us mistakenly including incomparable samples and reducing the accuracy of our analysis.
+Being able to reliably identify samples prepared with ribosomal depletion will allow us to avoid that problem.
+
+Ultimately, we would like to be able to make comparisons using samples prepared with ribosomal depletion as well as polyA selection.
+A separate project is underway to come up with a method to make them comparable.
+When that project is complete, we will need to be able to reliably categorize a sample as ribosomally-depleted to determine which samples need to undergo this transformation.
+Liam's work will be essential if we are to combine the XXXX ribosomally-depleted samples to our existing polyA-selected compendium.
